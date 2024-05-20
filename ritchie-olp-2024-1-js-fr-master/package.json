@@ -8,6 +8,7 @@
         "build": "webpack --mode production"
     },
     "dependencies": {
+        "json-server": "^1.0.0-beta.0",
         "three.js": "^0.77.1"
     },
     "devDependencies": {

@@ -4,11 +4,11 @@ import styles from './users.css';
 export function UserScene(params) {
 
     let pageContent = `
-    <h2 class=${styles['page-title']}>Bienvenido a usuarios</h2>
-    <p>Desde Usuarios</p>
-    <div id="user-info" class="${styles['user-info']}"></div>
-    <div class="${styles.loader}" id="loader"></div>
-`;
+        <h2 class=${styles['page-title']}>Bienvenido a usuarios</h2>
+        <p>Desde Usuarios</p>
+        <div id="user-info" class="${styles['user-info']}"></div>
+        <div class="${styles.loader}" id="loader"></div>
+    `;
 
     let logic = async () => {
         const resp = await fetch('https://jsonplaceholder.typicode.com/users');

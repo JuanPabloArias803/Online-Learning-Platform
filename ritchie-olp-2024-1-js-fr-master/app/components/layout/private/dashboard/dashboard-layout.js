@@ -19,7 +19,9 @@ export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarD
     { href: '/dashboard/show-cases', name: 'Showcases' },
     { href: '/dashboard/profile', name: 'Profile' },
     { href: '/dashboard/games', name: 'Games' },
-    { href: '/dashboard/new', name: 'New' },
+    { href: '/dashboard/routes', name: 'Rutas de aprendizaje' },
+    { href: '/dashboard/routes/languages', name: 'Lenguajes' },
+    
   ];
 
   navbarData = {

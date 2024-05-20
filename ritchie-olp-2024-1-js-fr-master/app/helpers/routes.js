@@ -10,6 +10,8 @@ import { RegisterPage } from '../scenes/public/register';
 import { GameScene } from '../scenes/private/games/games';
 import { ProfileScene } from '../scenes/private/profile/profile';
 import { PostScene } from '../scenes/private/posts/posts';
+import { RoutesScene } from '../scenes/private/learn-routes/learn-routes'
+import {LanguagesScene} from '../scenes/private/languages/languages'
 
 export const routes = {
     private: [
@@ -22,6 +24,8 @@ export const routes = {
         { path: '/dashboard/games', component: GameScene },
         { path: '/dashboard/profile', component: ProfileScene },
         { path: '/dashboard/posts', component: PostScene },
+        { path: '/dashboard/routes', component: RoutesScene },
+        { path: '/dashboard/routes/languages', component: LanguagesScene}
     ],
     public: [
         { path: '/login', component: LoginPage },
