@@ -1,6 +1,4 @@
 import styles from './home.css';
-import { ReportScene } from '../reports'
-
 export function HomeScene() {
 
   // generate random number between 1 an 10

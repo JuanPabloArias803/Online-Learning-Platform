@@ -1,3 +1,4 @@
+
 export const sendPropsToCustomComponent = (component, props) =>
     `<${component} data-props='${JSON.stringify(props)}'></${component}>`
 
