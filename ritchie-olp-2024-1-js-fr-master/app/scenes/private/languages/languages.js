@@ -1,28 +1,33 @@
 import { navigateTo } from '../../../Router';
+import { menuCss } from '../../../helpers/menu';
 export function LanguagesScene(params){
     let pageContent = ``;
     let logic=function(){};
     if (params.get('routeID')) {
         const routeID = params.get('routeID');
         pageContent = `
-            <div id="languages-container"></div>
+            <style>
+                ${menuCss}
+            </style>
+            <div class="menu-container"></div>
         `;
         logic = async () =>{
             const resp = await fetch(`http://localhost:3000/routes?id=${routeID}`);
             const route = await resp.json();
             const resp2 = await fetch(`http://localhost:3000/languages?routeID=${routeID}`);
             const languages = await resp2.json();
-            const languagesContainer = document.getElementById('languages-container');
-            const estilos = document.getElementById('estilos');
+            const languagesContainer = document.querySelector('.menu-container');
             languagesContainer.innerHTML=`
-                <h1>${route[0].name}</h1>
+                <div class="menu-title">${route[0].name}</div>
+                <div class="menu-content">${route[0].content}</div>
+                <div class="menu-parent">Lenguajes de ${route[0].name}</div>
                 ${languages.map(l => `
-                    <button id=${l.id} class="langBtn">
+                    <div id=${l.id} class="menu-child">
                         ${l.name}
-                    </button>`
+                    </div>`
                 ).join('')}
             `;
-            document.querySelectorAll(".langBtn").forEach(btn => {
+            document.querySelectorAll(".menu-child").forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     navigateTo(`/dashboard/routes/languages/modules?languageID=${e.currentTarget.id}`);
                 });

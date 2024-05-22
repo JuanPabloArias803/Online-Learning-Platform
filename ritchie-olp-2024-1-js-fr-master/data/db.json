@@ -1,14 +1,14 @@
 {
     "routes": [
-        {"id":1,"name":"FrontEnd"},
-        {"id":2,"name":"BackEnd"}
+        {"id":1,"name":"FrontEnd","content":"Esta es la teoría de la ruta"},
+        {"id":2,"name":"BackEnd","content":"Esta es la teoría de la ruta"}
     ],
 
     "languages": [
-        {"id":1,"name":"HTML","routeID":1},
-        {"id":2,"name":"CSS","routeID":1},
-        {"id":3,"name":"JavaScript","routeID":1},
-        {"id":4,"name":"Python","routeID":2}
+        {"id":1,"name":"HTML","content":"Esta es la teoría del lenguaje","routeID":1},
+        {"id":2,"name":"CSS","content":"Esta es la teoría del lenguaje","routeID":1},
+        {"id":3,"name":"JavaScript","content":"Esta es la teoría del lenguaje","routeID":1},
+        {"id":4,"name":"Python","content":"Esta es la teoría del lenguaje","routeID":2}
     ],
 
     "modules": [
@@ -26,9 +26,5 @@
         {"id":12,"name":"Responsive Design","content":"Esta es la teoría del módulo","languageID":2},
         {"id":13,"name":"Introducción a JavaScript","content":"Esta es la teoría del módulo","languageID":3},
         {"id":14,"name":"Introducción a Python","content":"Esta es la teoría del módulo","languageID":4}
-    ],
-
-    "tips": [
-        {"id":1,"challengeID":1}
     ]
 }
