@@ -10,6 +10,7 @@ import { ProfileScene } from '../scenes/private/profile/profile';
 import { RoutesScene } from '../scenes/private/learn-routes/learn-routes';
 import {LanguagesScene} from '../scenes/private/languages/languages';
 import { ModulesScene } from "../scenes/private/modules/modules";
+import { ModuleChallengesScene } from '../scenes/private/module-challenges/module-challenges';
 
 export const routes = {
     private: [
@@ -21,7 +22,8 @@ export const routes = {
         { path: '/dashboard/profile', component: ProfileScene },
         { path: '/dashboard/routes', component: RoutesScene },
         { path: '/dashboard/routes/languages', component: LanguagesScene},
-        { path: '/dashboard/routes/languages/modules', component: ModulesScene}
+        { path: '/dashboard/routes/languages/modules', component: ModulesScene},
+        { path: '/dashboard/routes/languages/modules/module-challenges', component: ModuleChallengesScene}
     ],
     public: [
         { path: '/login', component: LoginPage },

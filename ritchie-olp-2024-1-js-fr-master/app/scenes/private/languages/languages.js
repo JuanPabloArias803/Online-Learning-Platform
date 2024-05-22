@@ -16,6 +16,9 @@ export function LanguagesScene(params){
             const route = await resp.json();
             const resp2 = await fetch(`http://localhost:3000/languages?routeID=${routeID}`);
             const languages = await resp2.json();
+            console.log(languages);
+            const resp3 = await fetch(`http://localhost:3000/challenges?sectionType=route`);
+            const routeChallenges = await resp3.json();
             const languagesContainer = document.querySelector('.menu-container');
             languagesContainer.innerHTML=`
                 <div class="menu-title">${route[0].name}</div>
@@ -26,7 +29,21 @@ export function LanguagesScene(params){
                         ${l.name}
                     </div>`
                 ).join('')}
+                <div class="menu-challenge-title">Retos de ${route[0].name}</div>
+                ${routeChallenges.filter(e=>e.idSection==routeID).map(l => `
+                    <div id=${l.id} class="menu-challenges">
+                        ${l.name}
+                    </div>`
+                ).join('')}
             `;
+            if(languages.length === 0){
+                const $parent=document.querySelector(".menu-parent");
+                $parent.style.marginBottom="60px";
+            }
+            if(routeChallenges.filter(e=>e.idSection==routeID).length===0){
+                const $challengeTitle=document.querySelector(".menu-challenge-title");
+                $challengeTitle.style.marginBottom="60px";
+            }
             document.querySelectorAll(".menu-child").forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     navigateTo(`/dashboard/routes/languages/modules?languageID=${e.currentTarget.id}`);
