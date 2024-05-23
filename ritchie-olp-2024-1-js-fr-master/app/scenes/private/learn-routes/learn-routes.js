@@ -1,82 +1,54 @@
 import { navigateTo } from '../../../Router';
-import img from '../../../assets/galaxy.mp4';
-import styles from './learn-routes.css';
 import cursor from '../../../assets/rocket-coursor.png'
+import { Card} from '../../../components/card/card';
+import img from '../../../assets/galaxy.jpg'
 
-const randomColor = () => {
-    let r = Math.floor(Math.random() * 256).toString(16).padStart(2, '0'); 
-    let g = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-    let b = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-    let color = "#" + r + g + b;
-
-    return color;
-};
-
-function extractNumber(str) {
-    const match = str.match(/planet(\d+)/);
-    if (match) {
-        return parseInt(match[1], 10);
-    } else {
-        return null;
-    }
-}
 
 export function RoutesScene(params){
     let pageContent=`
-    <style id="estilos"></style>
-    <div id="routes-container"></div>
+    <style>
+        #routes-container{
+            background-image: url('../../../assets/galaxy.jpg');
+            background-size: cover;
+            height: 90vh;
+            cursor: url(${cursor}), auto;
+            width: 100%;
+            position:relative;
+            padding:10px;
+            overflow:hidden;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+    </style>
+    <section id="routes-container"></section>
     `;
     let logic= async ()=>{
         const resp = await fetch('http://localhost:3000/routes');
         const routes = await resp.json();
         const routesContainer = document.getElementById('routes-container');
-        const estilos = document.getElementById('estilos');
         routesContainer.innerHTML=`
-        <video
-            class=${styles.reportsBackgroundVideo}
-            src="${img}"
-            autoplay
-            muted
-            loop
-        ></video>
-        <div class=${styles.sun}></div>
-        ${routes.map(route => `
-            <div class="${styles.planet}" id="planet${route.id}">
-                <p>${route.name}</p>
-            </div>`
-        ).join('')}
+            ${routes.map(route => `
+                ${Card(route.name,route.id)}
+            `).join('')}
         `;
-        let estilosDinamicos=""
-        routes.forEach(element => {
-            estilosDinamicos+= 
-            `
-            #planet${element.id}{
-                background: linear-gradient(to bottom right, ${randomColor()}, ${randomColor()});
-                animation: orbit${element.id} ${5*element.id}s linear infinite;
-              }
-              @keyframes orbit${element.id} {
-                from {
-                    transform-origin: 50% 0;
-                    transform: rotate(0deg) translateX(${100*element.id}px) rotate(0deg);
-                }
-                to {
-                    transform-origin: 50% 0;
-                    transform: rotate(360deg) translateX(${100*element.id}px) rotate(-360deg);
-                }
-              }`
+        routes.forEach(e => {
+            (async()=>{
+                let resp2=await fetch(`http://localhost:3000/languages?routeID=${e.id}`);
+                let languages=await resp2.json();
+                languages.forEach(i => {
+                    let selectCard=document.querySelector(`#card${e.id} ul`);
+                    let newLI=document.createElement('li');
+                    newLI.textContent=i.name;
+                    selectCard.appendChild(newLI);
+                });
+           })();
         });
-        estilos.innerHTML=`
-            #routes-container{
-                position: relative;
-                height: 90vh;
-                overflow: hidden;
-                cursor: url(${cursor}), auto;
-            }
-            ${estilosDinamicos}
-        `;
-        document.querySelectorAll(`.${styles.planet}`).forEach(div => {
-            div.addEventListener('click', (e) => {
-                navigateTo(`/dashboard/routes/languages?routeID=${extractNumber(e.currentTarget.id)}`);
+        document.querySelectorAll(".card-btn").forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                navigateTo(`/dashboard/routes/languages?routeID=${e.target.id}`);
             });
         });
     }

@@ -1,0 +1,65 @@
+
+  /* Tarjeta creada */
+
+  .card{
+    width: 300px;
+    height: fit-content;
+    padding: 20px;
+    overflow: hidden;
+    background-image: radial-gradient(
+      at 88% 40%,
+      hsla(240, 15%, 9%, 1) 0px,
+      transparent 85%
+    ),
+    radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 0% 64%, rgb(118, 38, 247) 0px, transparent 85%),
+    radial-gradient(at 41% 94%, hsla(284, 100%, 84%, 1) 0px, transparent 85%),
+    radial-gradient(at 100% 99%, hsla(306, 100%, 57%, 1) 0px, transparent 85%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20px;
+    box-shadow: rgb(118, 38, 247, 0.16) 0px 3px 6px, rgb(118, 38, 247, 0.23) 0px 3px 6px;
+  }
+
+  .card .card-title{
+    color: white;
+    text-align: center;
+  }
+
+  .card .card-content{
+    color: white;
+    list-style: none;
+  }
+
+  .card .card-footer{
+    display: flex;
+    justify-content: center;
+  }
+
+  .card .card-btn {
+  background-color: rgb(118, 38, 247);
+  border-radius: 5px;
+  border-style: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.card .card-btn:hover{
+  background: linear-gradient(rgb(118, 38, 247,0.7),rgb(118, 38, 247,0.7));
+}
+
+@media screen and (max-width:450px){
+  .card{
+    width: 250px;
+    height: fit-content;
+    padding: 10px;
+  }
+}

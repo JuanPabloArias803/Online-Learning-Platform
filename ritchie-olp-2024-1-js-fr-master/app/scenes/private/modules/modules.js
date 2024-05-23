@@ -1,4 +1,4 @@
-import { menuCss } from "../../../helpers/menu";
+
 import { navigateTo } from '../../../Router';
 export function ModulesScene(params){
     let pageContent = ``;
@@ -7,7 +7,7 @@ export function ModulesScene(params){
         const languageID = params.get('languageID');
         pageContent = `
             <style>
-                ${menuCss}
+              
             </style>    
             <div class="menu-container"></div>
         `;

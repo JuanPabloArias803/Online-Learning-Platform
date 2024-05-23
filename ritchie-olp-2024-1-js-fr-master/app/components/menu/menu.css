@@ -1,0 +1,50 @@
+
+.menu-section{
+    border-radius: 10px;
+    border: solid 1px black;
+    background-color: white;
+    overflow: hidden;
+}
+
+.menu-title{
+    width: 100%;
+    padding: 20px;
+    height: fit-content;
+    text-align: center;
+    border-bottom: solid 1px black;
+    background-color: blueviolet;
+    color:white;
+}
+
+.menu-content-child{ 
+    width: 100%;
+    padding: 20px;
+    height: fit-content;
+    color: black;
+    display: flex;
+    gap: 20px;
+    justify-content:center ;
+    flex-wrap: wrap;
+}
+
+.menu-content-challenge{
+    width: 100%;
+    min-height: 50px;
+    height: fit-content;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+}
+
+.menu-content-theory{
+    width: 100%;
+    min-height: 50px;
+    padding: 20px;
+    height: fit-content;
+    color: black;
+    display: flex;
+    gap: 20px;
+    justify-content:center ;
+    flex-wrap: wrap;
+}

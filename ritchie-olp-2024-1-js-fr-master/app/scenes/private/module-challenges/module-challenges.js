@@ -1,4 +1,4 @@
-import { menuCss } from "../../../helpers/menu";
+
 import { navigateTo } from '../../../Router';
 export function ModuleChallengesScene(params){
     let pageContent = ``;
