@@ -1,8 +1,8 @@
 {
     "routes": [
-        {"id":1,"name":"FrontEnd","content":"Esta es la teoría de la ruta"},
+        {"id":1,"name":"Intligencia artificial y machine learning","content":"Esta es la teoría de la ruta"},
         {"id":2,"name":"BackEnd","content":"Esta es la teoría de la ruta"},
-        {"id":3,"name":"IA","content":"Esta es la teoría de la ruta"}
+        {"id":3,"name":"Desarrollo Fullstack","content":"Esta es la teoría de la ruta"}
     ],
 
     "languages": [

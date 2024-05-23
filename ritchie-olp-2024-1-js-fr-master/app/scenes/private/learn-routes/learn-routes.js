@@ -57,11 +57,11 @@ export function RoutesScene(params){
               @keyframes orbit${element.id} {
                 from {
                     transform-origin: 50% 0;
-                    transform: rotate(0deg) translateX(${90*element.id}px) rotate(0deg);
+                    transform: rotate(0deg) translateX(${100*element.id}px) rotate(0deg);
                 }
                 to {
                     transform-origin: 50% 0;
-                    transform: rotate(360deg) translateX(${90*element.id}px) rotate(-360deg);
+                    transform: rotate(360deg) translateX(${100*element.id}px) rotate(-360deg);
                 }
               }`
         });
