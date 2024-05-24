@@ -11,6 +11,7 @@ import { RoutesScene } from '../scenes/private/learn-routes/learn-routes';
 import {LanguagesScene} from '../scenes/private/languages/languages';
 import { ModulesScene } from "../scenes/private/modules/modules";
 import { ModuleChallengesScene } from '../scenes/private/module-challenges/module-challenges';
+import { CreateChallengeScene } from '../scenes/private/challenges/create-challenge';
 
 export const routes = {
     private: [
@@ -23,7 +24,8 @@ export const routes = {
         { path: '/dashboard/routes', component: RoutesScene },
         { path: '/dashboard/routes/languages', component: LanguagesScene},
         { path: '/dashboard/routes/languages/modules', component: ModulesScene},
-        { path: '/dashboard/routes/languages/modules/module-challenges', component: ModuleChallengesScene}
+        { path: '/dashboard/routes/languages/modules/module-challenges', component: ModuleChallengesScene},
+        { path: '/dashboard/create-challenges', component: CreateChallengeScene},
     ],
     public: [
         { path: '/login', component: LoginPage },

@@ -51,7 +51,7 @@ export function ModulesScene(params){
                 addCards+=Card(e.name,e.id)
             });
             addModules.innerHTML=addCards;
-            languageChallenges.forEach(e => {
+            languageChallenges.filter(challenge=>challenge.idSection==language[0].id).forEach(e => {
                 let selectSection=document.querySelector(`.menu-challenge-child`);
                 let newChallenge=document.createElement('div');
                 newChallenge.textContent=e.name;
