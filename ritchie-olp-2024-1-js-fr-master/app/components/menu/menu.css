@@ -2,8 +2,9 @@
 .menu-section{
     border-radius: 10px;
     border: solid 1px black;
-    background-color: white;
+    background-color: #d3d3d3;
     overflow: hidden;
+    box-shadow: rgb(118, 38, 247, 0.16) 0px 3px 6px, rgb(118, 38, 247, 0.23) 0px 3px 6px;
 }
 
 .menu-title{
@@ -18,8 +19,9 @@
 
 .menu-content-child{ 
     width: 100%;
-    padding: 20px;
+    min-height: 50px;
     height: fit-content;
+    padding: 20px;
     color: black;
     display: flex;
     gap: 20px;
@@ -39,9 +41,9 @@
 
 .menu-content-theory{
     width: 100%;
-    min-height: 50px;
     padding: 20px;
     height: fit-content;
+    min-height: 50px;
     color: black;
     display: flex;
     gap: 20px;

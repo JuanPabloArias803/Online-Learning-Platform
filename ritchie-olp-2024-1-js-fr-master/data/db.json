@@ -13,7 +13,7 @@
     ],
 
     "modules": [
-        {"id":1,"name":"Introducción a HTML","content":"Esta es la teoría del módulo","languageID":1},
+        {"id":1,"name":"Introducción a HTML lorem ipsum ","content":"Esta es la teoría del módulo","languageID":1},
         {"id":2,"name":"Elementos y Etiquetas","content":"Esta es la teoría del módulo","languageID":1},
         {"id":3,"name":"HTML Semántico","content":"Esta es la teoría del módulo","languageID":1},
         {"id":4,"name":"Multimedia en HTML","content":"Esta es la teoría del módulo","languageID":1},
@@ -33,6 +33,6 @@
         {"id":1,"name":"¿Que es una etiqueta?","description":"Descripción del reto","content":"contenido Quill","sectionType":"module","idSection":"2"},
         {"id":2,"name":"¿Que es HTML?","description":"Descripción del reto","content":"contenido Quill","sectionType":"language","idSection":"1"},
         {"id":3,"name":"¿Que es FrontEnd?","description":"Descripción del reto","content":"contenido Quill","sectionType":"route","idSection":"1"},
-        {"id":4,"name":"¿Que es FrontEnd?","description":"Descripción del reto","content":"contenido Quill","sectionType":"route","idSection":"1"}
+        {"id":4,"name":"¿Que es Backedn?","description":"Descripción del reto","content":"contenido Quill","sectionType":"route","idSection":"2"}
     ]
 }

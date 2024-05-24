@@ -10,7 +10,7 @@ export function LanguagesScene(params){
         .languages-container{
             background-image: url('../../../assets/galaxy.jpg');
             background-size: cover;
-            height: 90vh;
+            min-height: 90vh;
             cursor: url(${cursor}), auto;
             width: 100%;
             position:relative;
@@ -52,7 +52,9 @@ export function LanguagesScene(params){
                 addCards+=Card(e.name,e.id)
             });
             addLanguage.innerHTML=addCards;
-            routeChallenges.forEach(e => {
+            console.log(routeChallenges);
+            routeChallenges.filter(challenge=>challenge.idSection==route[0].id).forEach(e => {
+                console.log(e);
                 let selectSection=document.querySelector(`.menu-challenge-child`);
                 let newChallenge=document.createElement('div');
                 newChallenge.textContent=e.name;

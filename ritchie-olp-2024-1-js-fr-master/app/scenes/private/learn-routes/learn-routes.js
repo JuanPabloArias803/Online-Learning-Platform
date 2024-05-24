@@ -10,16 +10,16 @@ export function RoutesScene(params){
         #routes-container{
             background-image: url('../../../assets/galaxy.jpg');
             background-size: cover;
-            height: 90vh;
+            min-height: 90vh;
             cursor: url(${cursor}), auto;
             width: 100%;
             position:relative;
-            padding:10px;
+            padding:20px;
             overflow:hidden;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
+            align-content:center;
             gap: 20px;
         }
     </style>
