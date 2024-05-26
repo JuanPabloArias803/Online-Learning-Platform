@@ -1,0 +1,8 @@
+.toolbar-container{
+    border: 1px solid black;
+    background-color:blueviolet;
+}
+
+.toolbar-container span{
+    color: black;
+}

@@ -1,7 +1,8 @@
+import styles from './toolbar.css'
 export function ToolbarContainer() {
     return `
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
-    <div id="toolbar-container">
+    <div id="toolbar-container" class="${styles["toolbar-container"]}">
     <span class="ql-formats">
         <select class="ql-font"></select>
         <select class="ql-size"></select>
