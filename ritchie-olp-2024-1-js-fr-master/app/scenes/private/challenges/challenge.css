@@ -1,34 +1,35 @@
 
 .description-container {
     display: flex;
-    gap: var(--spacing-3);
-    margin-bottom: var(--spacing-3);
     justify-content: space-between;
     align-items: flex-end;
-    padding: var(--spacing-3) 0;
     padding-bottom: 0;
 }
 
 .action-buttons{
     display: flex;
-    gap: var(--spacing-3);
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .action-buttons>button{
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
 }
 
 .challenge_title-container,
 .challenge_description-container {
     display: flex;
     gap: var(--spacing-3);
-    margin-bottom: var(--spacing-1);
-    margin-top: var(--spacing-3);
     align-items: flex-start;
     flex-direction: column;
+}
+
+div.challenge_title-container>label{
+    margin: 0 auto;
 }
 
 .challenge_title-input {
@@ -40,7 +41,8 @@
 
 .editor {
     border: solid 1px black !important;
-    height: 250px !important; /* o cualquier altura que desees */
+    border-top: 1px black !important;
+    height: 200px !important; /* o cualquier altura que desees */
     /* Agregar otras propiedades si es necesario */
 }
 
@@ -50,4 +52,12 @@
     padding: var(--spacing-2);
     border: 1px solid black;
     border-radius: var(--border-radius);
+}
+
+.newForm{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

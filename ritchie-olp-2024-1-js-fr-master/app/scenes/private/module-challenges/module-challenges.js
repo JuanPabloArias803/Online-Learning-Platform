@@ -24,6 +24,7 @@ export function ModuleChallengesScene(params){
 
             .menu-challenge-child div{
                 padding:20px;
+                width:100%;
             }
 
             .menu-challenge-child div:hover{
@@ -43,21 +44,31 @@ export function ModuleChallengesScene(params){
             const resp2 = await fetch(`http://localhost:3000/challenges?sectionType=module`);
             const moduleChallenges = await resp2.json();
             const moduleChallengesContainer = document.querySelector('.module-challenges-container');
-            moduleChallengesContainer.innerHTML=Menu(module[0].name,module[0].content,`Módulos de ${module[0].name}`);
-            const fixMenu= document.querySelector(".menu-children");
-            fixMenu.style.display="none";
+            moduleChallengesContainer.innerHTML=Menu(module[0].name,module[0].content,``);
+            let addChallenges=document.querySelector('.menu-children-child');
+            addChallenges.innerHTML=`
+                ${Card(`Crear Reto de ${module[0].name}`,"create")}
+            `;
             moduleChallenges.filter(challenge=>challenge.idSection==module[0].id).forEach(e => {
                 let selectSection=document.querySelector(`.menu-challenge-child`);
                 let newChallenge=document.createElement('div');
                 newChallenge.textContent=e.name;
+                newChallenge.id = e.id;
                 newChallenge.className="challengeDiv";
                 newChallenge.style.textAlign="center";
                 selectSection.appendChild(newChallenge);
             });
+
+            const createCardBtn=document.querySelector("#create");
+            createCardBtn.classList.remove('card-btn');
+            createCardBtn.textContent="Crear..."
+            createCardBtn.addEventListener('click', (e) => {
+                navigateTo(`/dashboard/create-challenges?sectionType=module&sectionId=${moduleID}&sectionTitle=${module[0].name}`);
+            });
+
             document.querySelectorAll(".challengeDiv").forEach(div => {
                 div.addEventListener('click', (e) => {
-                    alert("funciona")
-                    //navigateTo(`/dashboard/users`);
+                    navigateTo(`/dashboard/challenge?challengeID=${e.target.id}`);
                 });
             });
         };

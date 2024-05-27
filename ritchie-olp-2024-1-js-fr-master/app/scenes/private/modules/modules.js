@@ -3,6 +3,8 @@ import cursor from '../../../assets/rocket-coursor.png'
 import { Card} from '../../../components/card/card';
 import img from '../../../assets/galaxy.jpg'
 import { Menu } from '../../../components/menu/menu';
+import { QuillDeltaToHtmlConverter  } from 'quill-delta-to-html';
+
 export function ModulesScene(params){
     let pageContent = `
         <style>
@@ -23,6 +25,7 @@ export function ModulesScene(params){
 
         .menu-challenge-child div{
             padding:20px;
+            width:100%;
         }
 
         .menu-challenge-child div:hover{
@@ -44,22 +47,51 @@ export function ModulesScene(params){
             const resp3 = await fetch(`http://localhost:3000/challenges?sectionType=language`);
             const languageChallenges = await resp3.json();
             const modulesContainer = document.querySelector('.modules-container');
-            modulesContainer.innerHTML=Menu(language[0].name,language[0].content,`Módulos de ${language[0].name}`);
+            modulesContainer.innerHTML=Menu(language[0].name,"",`Módulos de ${language[0].name}`);
+            const fixMenu1=document.querySelector(".menu-theory-content");
+            fixMenu1.innerHTML=`
+                <div id="editor"></div>
+            `;
+            //editor
+            const converter = new QuillDeltaToHtmlConverter(JSON.parse(language[0].content).ops, {});
+            const htmlContent = converter.convert();
+            console.log(htmlContent);
+            const editor = document.querySelector('#editor');
+            editor.innerHTML = `${htmlContent}`;
             let addModules=document.querySelector('.menu-children-child');
             let addCards="";
             modules.forEach(e => {
                 addCards+=Card(e.name,e.id)
             });
-            addModules.innerHTML=addCards;
+            addModules.innerHTML=`
+                ${addCards}
+                ${Card(`Crear Módulo de ${language[0].name}`,"createContent")}
+                ${Card(`Crear Reto ${language[0].name}`,"create")}
+            `;
             languageChallenges.filter(challenge=>challenge.idSection==language[0].id).forEach(e => {
                 let selectSection=document.querySelector(`.menu-challenge-child`);
                 let newChallenge=document.createElement('div');
                 newChallenge.textContent=e.name;
+                newChallenge.id = e.id;
                 newChallenge.className="challengeDiv";
                 newChallenge.style.textAlign="center";
                 selectSection.appendChild(newChallenge);
             });
                 
+            const createContentBtn=document.querySelector("#createContent");
+            createContentBtn.classList.remove('card-btn');
+            createContentBtn.textContent="Crear..."
+            createContentBtn.addEventListener('click', (e) => {
+                navigateTo(`/dashboard/create-content?sectionType=module&parentId=${language[0].id}`);
+            });
+
+            const createCardBtn=document.querySelector("#create");
+            createCardBtn.classList.remove('card-btn');
+            createCardBtn.textContent="Crear..."
+            createCardBtn.addEventListener('click', (e) => {
+                navigateTo(`/dashboard/create-challenges?sectionType=language&sectionId=${languageID}&sectionTitle=${language[0].name}`);
+            });
+            
             document.querySelectorAll(".card-btn").forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     navigateTo(`/dashboard/routes/languages/modules/module-challenges?moduleID=${e.currentTarget.id}`);
@@ -68,8 +100,7 @@ export function ModulesScene(params){
 
             document.querySelectorAll(".challengeDiv").forEach(div => {
                 div.addEventListener('click', (e) => {
-                    alert("funciona")
-                    //navigateTo(`/dashboard/users`);
+                    navigateTo(`/dashboard/challenge?challengeID=${e.target.id}`);
                 });
             });
         };

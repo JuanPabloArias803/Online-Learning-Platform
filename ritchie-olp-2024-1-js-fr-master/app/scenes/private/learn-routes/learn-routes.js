@@ -33,6 +33,7 @@ export function RoutesScene(params){
             ${routes.map(route => `
                 ${Card(route.name,route.id)}
             `).join('')}
+            ${Card(`Crear Ruta`,"createContent")}
         `;
         routes.forEach(e => {
             (async()=>{
@@ -46,6 +47,14 @@ export function RoutesScene(params){
                 });
            })();
         });
+        
+        const createCardBtn=document.querySelector("#createContent");
+            createCardBtn.classList.remove('card-btn');
+            createCardBtn.textContent="Crear..."
+            createCardBtn.addEventListener('click', (e) => {
+                navigateTo(`/dashboard/create-content?sectionType=route`);
+            });
+
         document.querySelectorAll(".card-btn").forEach(btn => {
             btn.addEventListener('click', (e) => {
                 navigateTo(`/dashboard/routes/languages?routeID=${e.target.id}`);

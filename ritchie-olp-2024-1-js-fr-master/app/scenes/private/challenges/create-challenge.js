@@ -9,10 +9,17 @@ import { Menu } from '../../../components/menu/menu';
 import cursor from '../../../assets/rocket-coursor.png'
 
 
-export function CreateChallengeScene() {
+export function CreateChallengeScene(params) {
+    let pageContent="";
+    let logic=function () {};
+    if(params.get('sectionId')){
     // Inicializa el contenedor HTML para el editor y un botón para guardar el contenido
+    const sectionTitle = params.get('sectionTitle');
+    const sectionType = params.get('sectionType');
+    const sectionId = params.get('sectionId');
+
     const editorContent = `<div id="editor" class="${styles.editor}"></div>`
-    const pageContent = `
+    pageContent = `
     <style>
         .createChallenge-container{
             background-image: url('../../../assets/galaxy.jpg');
@@ -26,11 +33,10 @@ export function CreateChallengeScene() {
             display: flex;
             flex-direction:column;
             align-content: center;
-            gap: 20px;
         }
         </style>
         <section class="createChallenge-container">
-            ${Menu("Crear Nuevo Reto")}
+            ${Menu(`Crear Reto de ${sectionTitle}`)}
         </section>
     `;
 
@@ -40,7 +46,7 @@ export function CreateChallengeScene() {
     }
 
     // Lógica para inicializar y configurar Quill
-    const logic = () => {
+    logic = () => {
         // Quill.register('modules/formula', MathQuillBlot);
         // Espera a que el DOM esté completamente cargado
         const fixMenu= document.querySelector(".menu-children");
@@ -53,16 +59,14 @@ export function CreateChallengeScene() {
                 <div class="${styles["challenge_title-container"]}">
                     <label for="title">Título</label>
                     <input type="text" id="title" name="title" class="${styles["challenge_title-input"]}">
-                </div>  
-                <div class="${styles["description-container"]}">
-                    <label>Descripción del reto</label>
-                    <div class="${styles["action-buttons"]}">
-                        <button id="saveButton" type="button">Guardar</button>
-                        <button type="submit">Publicar</button>
-                    </div>
                 </div>
-                ${ToolbarContainer()}
-                ${editorContent}
+                <div>
+                    ${ToolbarContainer()}
+                    ${editorContent}
+                </div>
+                <div class="${styles["action-buttons"]}">
+                    <button type="submit">Publicar</button>
+                </div>
             </form>
         `;
 
@@ -77,13 +81,6 @@ export function CreateChallengeScene() {
             // }
         });
 
-        // Listener para manejar el guardado del contenido
-        document.querySelector('#saveButton')
-            .addEventListener('click', () => {
-                persistContent(quill);
-                alert('Contenido guardado con éxito');
-            });
-
         // Listener para manejar la publicación del contenido, o sea, enviar a base de datos.
         document.querySelector('#create-challenge-form')
             .addEventListener('submit', async (e) => {
@@ -91,13 +88,8 @@ export function CreateChallengeScene() {
                 e.preventDefault();
                 // Valida que el título y la descripción no estén vacíos
                 const titleValue = document.querySelector('#title').value;
-                const descriptionValue = document.querySelector('#description').value;
                 if (!titleValue) {
                     alert('Por favor, ingresa un título para tu reto');
-                    return;
-                }
-                if(!descriptionValue) {
-                    alert('Por favor, ingresa una descripción para tu reto');
                     return;
                 }
                 persistContent(quill);
@@ -109,19 +101,19 @@ export function CreateChallengeScene() {
                     // Aquí va la lógica para enviar el contenido a la base de datos
                     try {
                         const data = {
-                            title: titleValue,
+                            id: Math.floor((Math.random()*1000000000)+1),
+                            name: titleValue,
                             content: localStorage.getItem('quillContent'),
-                            description: descriptionValue
+                            sectionType: sectionType,
+                            idSection: sectionId
                         }
-                        const response = await fetchApi('http://localhost:4000/api/challenges', {
+                        const response = await fetchApi('http://localhost:3000/challenges', {
                             method: 'POST',
                             body: JSON.stringify(data),
                             headers: {
                                 'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${localStorage.getItem('token')}`
                             }
                         });
-                        console.log(response);
                         alert('Reto publicado con éxito');
                         document.querySelector('#create-challenge-form').reset(); // Resetea el formulario
                         navigateTo('/dashboard/challenges');
@@ -133,8 +125,10 @@ export function CreateChallengeScene() {
     };
 
     // Retorna el contenido de la página y la función de lógica
-    return {
-        pageContent,
-        logic
-    }
+    
+}
+return {
+    pageContent,
+    logic
+}
 }
