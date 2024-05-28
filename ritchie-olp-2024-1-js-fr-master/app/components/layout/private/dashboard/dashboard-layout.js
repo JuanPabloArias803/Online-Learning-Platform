@@ -11,19 +11,19 @@ export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarD
   const root = document.getElementById('root');
 
   sidebarData = [
-    { href: '/dashboard', name: 'Home' },
-    { href: '/dashboard/settings', name: 'Settings' },
-    { href: '/dashboard/users', name: 'Users' },
-    { href: '/dashboard/show-cases', name: 'Showcases' },
+    //{ href: '/dashboard', name: 'Home' },
+    //{ href: '/dashboard/settings', name: 'Settings' },
+    //{ href: '/dashboard/users', name: 'Users' },
+    //{ href: '/dashboard/show-cases', name: 'Showcases' },
     { href: '/dashboard/profile', name: 'Profile' },
-    { href: '/dashboard/games', name: 'Games' },
+    //{ href: '/dashboard/games', name: 'Games' },
     { href: '/dashboard/routes', name: 'Rutas de aprendizaje' },
-    { href: '/dashboard/routes/languages?routeID=2', name: 'Backend' },
+    //{ href: '/dashboard/routes/languages?routeID=2', name: 'Backend' },
     
   ];
 
   navbarData = {
-    user: 'Nicolas Picon',
+    user: 'John Doe',
     userImage: 'https://randomuser.me/api/portraits/men/75.jpg',
   };
 

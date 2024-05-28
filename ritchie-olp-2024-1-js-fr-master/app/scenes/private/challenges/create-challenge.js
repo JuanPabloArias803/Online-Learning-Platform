@@ -116,7 +116,7 @@ export function CreateChallengeScene(params) {
                         });
                         alert('Reto publicado con éxito');
                         document.querySelector('#create-challenge-form').reset(); // Resetea el formulario
-                        navigateTo('/dashboard/challenges');
+                        navigateTo('back');
                     } catch (error) {
                         alert('Ha ocurrido un error al publicar el reto. Por favor, inténtalo de nuevo más tarde.');
                         console.error('Error al publicar el reto:', error);

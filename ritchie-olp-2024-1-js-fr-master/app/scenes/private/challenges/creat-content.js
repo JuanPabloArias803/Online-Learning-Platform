@@ -155,7 +155,7 @@ export function CreateContentScene(params) {
                             });
                             alert('Contenido publicado con éxito');
                             document.querySelector('#create-challenge-form').reset(); // Resetea el formulario
-                            navigateTo('/dashboard/');
+                            navigateTo('back');
                         }
                         
                     } catch (error) {

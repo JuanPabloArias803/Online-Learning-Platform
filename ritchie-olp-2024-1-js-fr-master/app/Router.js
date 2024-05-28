@@ -29,8 +29,12 @@ async function verifyToken(token) {
 
 // Navegar a una nueva ruta
 export function navigateTo(path) {
-  window.history.pushState({}, '', window.location.origin + path);
-  Router();
+  if (path === 'back') {
+    window.history.back();
+  } else {
+    window.history.pushState({}, '', window.location.origin + path);
+    Router();
+  }
 }
 
 // Verificar la autenticación y redirigir
@@ -42,7 +46,7 @@ async function checkAuth(path, params) {
     if (isValid) {
       // Redirigir al dashboard si se intenta acceder al login o a la raíz
       if (path === '/login' || path === '/') {
-        navigateTo('/dashboard');
+        navigateTo('/dashboard/routes');
         return;
       }
 
@@ -54,7 +58,7 @@ async function checkAuth(path, params) {
         DashboardLayout(pageContent, logic)
         return;
       } else {
-        navigateTo('/dashboard'); // Redirigir a dashboard si la ruta privada no existe
+        navigateTo('/dashboard/routes'); // Redirigir a dashboard si la ruta privada no existe
       }
     } else {
       // Token no válido, redirigir a login
@@ -77,7 +81,7 @@ export async function Router() {
     if (token) {
       const [isValid] = await verifyToken(token);
       if (isValid) {
-        navigateTo('/dashboard');
+        navigateTo('/dashboard/routes');
         return;
       }
     }

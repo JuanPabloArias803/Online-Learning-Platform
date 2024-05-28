@@ -109,6 +109,41 @@ export function ChallengeScene(params){
                 //     formula: true,
                 // }
             });
+            document.querySelector('#create-challenge-form')
+            .addEventListener('submit', async (e) => {
+                // Evita que el formulario se envíe
+                e.preventDefault();
+                // Valida que el título y la descripción no estén vacíos
+                persistContent(quill);
+                if (!localStorage.getItem('quillContent')) {
+                    alert('Por favor, ingresa una descripción para tu reto');
+                    return;
+                }
+                if (confirm("¿Estás seguro de que deseas terminar el reto?")) {
+                    // Aquí va la lógica para enviar el contenido a la base de datos
+                    try {
+                        // const data = {
+                        //     id: Math.floor((Math.random()*1000000000)+1),
+                        //     name: titleValue,
+                        //     content: localStorage.getItem('quillContent'),
+                        //     sectionType: sectionType,
+                        //     idSection: sectionId
+                        // }
+                        // const response = await fetchApi('http://localhost:3000/challenges', {
+                        //     method: 'POST',
+                        //     body: JSON.stringify(data),
+                        //     headers: {
+                        //         'Content-Type': 'application/json',
+                        //     }
+                        // });
+                        alert('Reto finalizado');
+                        document.querySelector('#create-challenge-form').reset(); // Resetea el formulario
+                        navigateTo('back');
+                    } catch (error) {
+                        alert('Ha ocurrido un error al publicar el reto. Por favor, inténtalo de nuevo más tarde.');
+                        console.error('Error al publicar el reto:', error);
+                    }
+                } });
     }
     return {
         pageContent,

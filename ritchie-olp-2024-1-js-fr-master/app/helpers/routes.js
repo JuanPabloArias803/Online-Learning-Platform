@@ -1,5 +1,4 @@
 import { LoginPage } from '../scenes/public/login';
-import { HomeScene } from '../scenes/private/home';
 import { SettingsScene } from '../scenes/private/settings';
 import { UserScene } from '../scenes/private/users';
 import { Showcases } from '../scenes/private/showcases';
@@ -17,7 +16,6 @@ import { CreateContentScene } from '../scenes/private/challenges/creat-content';
 
 export const routes = {
     private: [
-        { path: '/dashboard', component: HomeScene },
         { path: '/dashboard/settings', component: SettingsScene },
         { path: '/dashboard/users', component: UserScene },
         { path: '/dashboard/show-cases', component: Showcases },
