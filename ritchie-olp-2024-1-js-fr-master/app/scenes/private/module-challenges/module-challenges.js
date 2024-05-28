@@ -4,6 +4,8 @@ import cursor from '../../../assets/rocket-coursor.png'
 import { Card} from '../../../components/card/card';
 import img from '../../../assets/galaxy.jpg'
 import { Menu } from '../../../components/menu/menu';
+import { QuillDeltaToHtmlConverter  } from 'quill-delta-to-html';
+
 export function ModuleChallengesScene(params){
     let pageContent = `
         <style>
@@ -45,6 +47,16 @@ export function ModuleChallengesScene(params){
             const moduleChallenges = await resp2.json();
             const moduleChallengesContainer = document.querySelector('.module-challenges-container');
             moduleChallengesContainer.innerHTML=Menu(module[0].name,module[0].content,``);
+            const fixMenu1=document.querySelector(".menu-theory-content");
+            fixMenu1.innerHTML=`
+                <div id="editor"></div>
+            `;
+            //editor
+            const converter = new QuillDeltaToHtmlConverter(JSON.parse(module[0].content).ops, {});
+            const htmlContent = converter.convert();
+            console.log(htmlContent);
+            const editor = document.querySelector('#editor');
+            editor.innerHTML = `${htmlContent}`;
             let addChallenges=document.querySelector('.menu-children-child');
             addChallenges.innerHTML=`
                 ${Card(`Crear Reto de ${module[0].name}`,"create")}
